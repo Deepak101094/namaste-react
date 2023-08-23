@@ -19,3 +19,24 @@
 - HTTPs
 - Tree shaking - remove unused code
 - Different dev and prod bundles
+
+# Namaste Food
+
+// React.createElement => Object => HTMLElement(render)
+/\*\*
+
+- Header
+- - Logo
+- - Nav Items
+- Body
+- - Search
+- - RestaurantContainer
+- - RestaurantCard
+- - Img
+- - Name of Restaurant, star, Rating, cuisine, Delivery time
+- Footer
+- - CopyRight
+- - Link
+- - Address
+- - Contact
+    \*/
