@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import Simmer from "./Simmer";
 
@@ -16,6 +17,7 @@ const Body = () => {
 			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 		);
 		const json = await data.json();
+		console.log(json, "from list");
 		const resData =
 			json?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants;
 
@@ -37,7 +39,7 @@ const Body = () => {
 		setFilteredResList(upatedtList);
 	};
 
-	if (restaurantList.length === 0) {
+	if (restaurantList?.length === 0) {
 		return <Simmer />;
 	}
 
