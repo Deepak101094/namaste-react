@@ -45,3 +45,30 @@
 
 - Client Side Routing
 - Server Side Routing
+
+# lifecycle of the component
+
+- ---MOUNTING---
+
+  --> Constructor will call with initial state
+  --> Render will call with (initial data or dummy data)
+  --> <HTML (load with dummy data)>
+  --> Component Did Mount will call
+  -- <API call>
+  -- <this.setState> --> state variable is updated
+
+- ---UPDATING---
+
+  --> Render call with (API data)
+  --> <HTML (load with new API data)>
+  --> Component Did Update
+
+  - ---UNMOUNTING---
+
+  --> Component Will UnMount
+
+# render phase and commit phase
+
+- Render Phase => when render phase start react will start reconciliation and finding the difference between old virtual DOM to updated virtual DOM, once it found the difference than render phase completed.
+
+- Commit Phase => React will start updating the DOM than DOM gets updated
