@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useOnlineStatus } from "../utils/useOnlineStatus";
 import RestaurantCard from "./RestaurantCard";
 import Simmer from "./Simmer";
 
@@ -7,6 +7,7 @@ const Body = () => {
 	const [restaurantList, setRestaurantList] = useState([]);
 	const [filteredResList, setFilteredResList] = useState([]);
 	const [searchText, setSearchText] = useState("");
+	const onlineStatus = useOnlineStatus();
 
 	useEffect(() => {
 		fetchData();
@@ -41,6 +42,13 @@ const Body = () => {
 
 	if (restaurantList?.length === 0) {
 		return <Simmer />;
+	}
+	if (onlineStatus === false) {
+		return (
+			<h1>
+				Looks like you're offline!! Please check your internet connection!
+			</h1>
+		);
 	}
 
 	return (
