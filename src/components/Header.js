@@ -6,33 +6,35 @@ import { useOnlineStatus } from "../utils/useOnlineStatus";
 const Header = () => {
 	const [btnName, setBtnName] = useState("Login");
 	return (
-		<div className='header'>
-			<div className='logo-container'>
-				<img className='logo' src={LOGO_URL} />
+		<div className='flex justify-between bg-pink-100 shadow-lg'>
+			<div className='px-4 m-2'>
+				<img className='w-20' src={LOGO_URL} />
 			</div>
-			<div className='nav-items'>
-				<ul>
-					<li>OnlineStatus:{useOnlineStatus ? "✅" : "🔴"}</li>
-					<li>
+			<div className='flex items-center'>
+				<ul className='flex p-4 m-4 gap-4 '>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
+						OnlineStatus:{useOnlineStatus ? "✅" : "🔴"}
+					</li>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
 						<Link to='/'>Home</Link>
 					</li>
-					<li>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
 						<Link to='/about'>About</Link>
 					</li>
-					<li>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
 						<Link to='/contact'>Contact Us</Link>
 					</li>
-					<li>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
 						<Link to='/grocery'>Grocery</Link>
 					</li>
-					<li>
+					<li className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'>
 						<Link to='/cart'>Cart</Link>
 					</li>
 					<button
 						onClick={() =>
 							btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
 						}
-						className='login'
+						className='bg-gray-100 px-4 py-2 rounded-lg cursor-pointer'
 					>
 						{btnName}
 					</button>

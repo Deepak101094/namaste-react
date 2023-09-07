@@ -53,21 +53,31 @@ const Body = () => {
 
 	return (
 		<div className='body'>
-			<div className='filter'>
-				<div className='search'>
+			<div className='flex'>
+				<div className='m-4 p-4'>
 					<input
 						type='text'
-						className='search-input'
+						className='border border-solid border-black px-4 py-2 rounded-lg'
 						onChange={(e) => setSearchText(e.target.value)}
 						value={searchText}
 					/>
-					<button onClick={searchHandler}>search</button>
+					<button
+						className='px-4 py-2 bg-green-100 m-4 rounded-lg'
+						onClick={searchHandler}
+					>
+						search
+					</button>
 				</div>
-				<button onClick={filterRestaurant} className='filter-btn'>
-					Top Reted Restaurant
-				</button>
+				<div className='m-4 p-4 flex items-center'>
+					<button
+						onClick={filterRestaurant}
+						className=' bg- px-4 py-2 bg-gray-100 rounded-lg'
+					>
+						Top Reted Restaurant
+					</button>
+				</div>
 			</div>
-			<div className='res-container'>
+			<div className='flex flex-wrap'>
 				<RestaurantCard resData={filteredResList} />
 			</div>
 		</div>
