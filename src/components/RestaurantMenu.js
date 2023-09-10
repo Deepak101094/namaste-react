@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRestaurantMenu } from "../utils/useRestaurant";
+import RestaurantCotegory from "./RestaurantCotegory";
 import Simmer from "./Simmer";
 
 const RestaurantMenu = () => {
+	const [showIndex, setShowIndex] = useState(0);
 	const { resId } = useParams();
 	const resInfo = useRestaurantMenu(resId);
 
@@ -12,27 +14,33 @@ const RestaurantMenu = () => {
 	}
 
 	const { name, cuisines, costForTwoMessage } =
-		resInfo?.cards[0].card?.card?.info;
+		resInfo?.cards[0]?.card?.card?.info;
 
-	const { itemCards } =
-		resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+	const cotegories =
+		resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+			(c) =>
+				c?.card?.["card"]?.["@type"] ===
+				"type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+		);
+
+	const handleShowItem = (i) => {
+		setShowIndex(i);
+	};
 
 	return (
-		<div className='menu'>
-			<h1>{name} </h1>
+		<div className='text-center'>
+			<h1 className='font-bold mt-6 text-xl'>{name} </h1>
 			<p>
-				{" "}
-				{cuisines.join(" , ")} - {costForTwoMessage}{" "}
+				{cuisines.join(" , ")} - {costForTwoMessage}
 			</p>
-			<ul>
-				{itemCards?.map((item) => (
-					<li key={item?.card?.info?.id}>
-						{item?.card?.info?.name} -Rs.
-						{item?.card?.info?.price / 100 ||
-							item?.card?.info?.defaultPrice}{" "}
-					</li>
-				))}
-			</ul>
+			{/* categories accordions */}
+			{cotegories?.map((category, index) => (
+				<RestaurantCotegory
+					category={category}
+					showItem={index === showIndex ? true : false}
+					handleShowItem={() => handleShowItem(index)}
+				/>
+			))}
 		</div>
 	);
 };

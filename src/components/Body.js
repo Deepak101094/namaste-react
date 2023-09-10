@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
-import RestaurantCard from "./RestaurantCard";
+import { UserContext } from "../utils/UserContext";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Simmer from "./Simmer";
 
 const Body = () => {
@@ -8,6 +10,9 @@ const Body = () => {
 	const [filteredResList, setFilteredResList] = useState([]);
 	const [searchText, setSearchText] = useState("");
 	const onlineStatus = useOnlineStatus();
+	const { logInUser, setUserInfo } = useContext(UserContext);
+
+	const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
 	useEffect(() => {
 		fetchData();
@@ -15,10 +20,9 @@ const Body = () => {
 
 	const fetchData = async () => {
 		const data = await fetch(
-			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 		);
 		const json = await data.json();
-		console.log(json, "from list");
 		const resData =
 			json?.data?.cards[2].card?.card?.gridElements?.infoWithStyle?.restaurants;
 
@@ -30,7 +34,8 @@ const Body = () => {
 		const filterResList = restaurantList.filter(
 			(item) => item.info.avgRating > 4
 		);
-		setRestaurantList(filterResList);
+		console.log(filterResList, "filterResList");
+		setFilteredResList(filterResList);
 	};
 
 	const searchHandler = () => {
@@ -76,9 +81,28 @@ const Body = () => {
 						Top Reted Restaurant
 					</button>
 				</div>
+				<div className='m-4 p-4 flex items-center'>
+					<label>UserName:</label>
+					<input
+						className=' border border-black px-4 py-2 rounded-lg ml-2'
+						value={logInUser}
+						onChange={(e) => setUserInfo(e.target.value)}
+					/>
+				</div>
 			</div>
 			<div className='flex flex-wrap'>
-				<RestaurantCard resData={filteredResList} />
+				{filteredResList?.map((restaurant) => (
+					<Link
+						to={"/restaurant/" + restaurant.info.id}
+						key={restaurant.info.id}
+					>
+						{restaurant.info.promoted ? (
+							<RestaurantCardPromoted resData={restaurant} />
+						) : (
+							<RestaurantCard resData={restaurant} />
+						)}
+					</Link>
+				))}
 			</div>
 		</div>
 	);
