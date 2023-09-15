@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
 import Header from "./components/Header";
 import Body from "./components/Body";
 // import About from "./components/About";
@@ -8,6 +9,8 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { UserContext } from "./utils/UserContext";
+import appStore from "./utils/store/appStore";
+import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
 
 // Chunking
@@ -30,14 +33,14 @@ const AppLayout = () => {
 	}, []);
 
 	return (
-		<UserContext.Provider value={{ logInUser: userInfo, setUserInfo }}>
-			<div className='app'>
-				{/* <UserContext.Provider value={{ logInUser: "something" }}> */}
-				<Header />
-				{/* </UserContext.Provider> */}
-				<Outlet />
-			</div>
-		</UserContext.Provider>
+		<Provider store={appStore}>
+			<UserContext.Provider value={{ logInUser: userInfo, setUserInfo }}>
+				<div className='app'>
+					<Header />
+					<Outlet />
+				</div>
+			</UserContext.Provider>
+		</Provider>
 	);
 };
 
@@ -69,6 +72,10 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/restaurant/:resId",
 				element: <RestaurantMenu />,
+			},
+			{
+				path: "/cart",
+				element: <Cart />,
 			},
 		],
 		errorElement: <Error />,

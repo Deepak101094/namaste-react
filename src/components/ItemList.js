@@ -1,8 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { IMAGE_URL } from "../utils/constant";
+import { addItem } from "../utils/store/cartSlice";
 
 const ItemList = ({ items }) => {
-	console.log(items);
+	const dispatch = useDispatch();
+
+	const handleAddItem = (item) => {
+		dispatch(addItem(item));
+	};
+
 	return (
 		<div>
 			{items.map((item) => {
@@ -21,17 +28,18 @@ const ItemList = ({ items }) => {
 								{description}{" "}
 							</span>
 						</div>
-						<div>
-							<div className='relative flex justify-center'>
-								<img
-									className='w-40  rounded-lg relative'
-									src={IMAGE_URL + imageId}
-									alt='pic'
-								/>
-								<button className='absolute bg-white px-8 py-2 text-green-500 bottom-0 rounded-lg'>
-									Add
-								</button>
-							</div>
+						<div className='relative 3/12 flex justify-center'>
+							<img
+								className=' w-40 h-32 rounded-lg'
+								src={IMAGE_URL + imageId}
+								alt='pic'
+							/>
+							<button
+								onClick={() => handleAddItem(item)}
+								className='absolute bg-white px-4 py-2 border border-gray-300 shadow-2xl text-green-500 bottom-[-1] rounded-lg'
+							>
+								Add +
+							</button>
 						</div>
 					</div>
 				);

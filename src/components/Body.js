@@ -58,8 +58,8 @@ const Body = () => {
 
 	return (
 		<div className='body'>
-			<div className='flex'>
-				<div className='m-4 p-4'>
+			<div className='flex mt-6 gap-6'>
+				<div className=''>
 					<input
 						type='text'
 						className='border border-solid border-black px-4 py-2 rounded-lg'
@@ -73,7 +73,7 @@ const Body = () => {
 						search
 					</button>
 				</div>
-				<div className='m-4 p-4 flex items-center'>
+				<div className=' flex items-center'>
 					<button
 						onClick={filterRestaurant}
 						className=' bg- px-4 py-2 bg-gray-100 rounded-lg'
@@ -81,7 +81,7 @@ const Body = () => {
 						Top Reted Restaurant
 					</button>
 				</div>
-				<div className='m-4 p-4 flex items-center'>
+				<div className=' flex items-center'>
 					<label>UserName:</label>
 					<input
 						className=' border border-black px-4 py-2 rounded-lg ml-2'

@@ -28,14 +28,15 @@ const RestaurantMenu = () => {
 	};
 
 	return (
-		<div className='text-center'>
-			<h1 className='font-bold mt-6 text-xl'>{name} </h1>
+		<div className='text-center bg-gray-100'>
+			<h1 className='font-bold pt-6 text-xl'>{name} </h1>
 			<p>
 				{cuisines.join(" , ")} - {costForTwoMessage}
 			</p>
 			{/* categories accordions */}
 			{cotegories?.map((category, index) => (
 				<RestaurantCotegory
+					key={index}
 					category={category}
 					showItem={index === showIndex ? true : false}
 					handleShowItem={() => handleShowItem(index)}
