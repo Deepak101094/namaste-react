@@ -72,3 +72,21 @@
 - Render Phase => when render phase start react will start reconciliation and finding the difference between old virtual DOM to updated virtual DOM, once it found the difference than render phase completed.
 
 - Commit Phase => React will start updating the DOM than DOM gets updated
+
+# Types of testing
+
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e Testing
+
+# Setting up Testing in our app
+
+- Install React Testing Library
+- Install Jest
+- Install Babel dependencies
+- Configure Babel
+- Configure Parcel Config file to disable default babel transpilation
+- jest configuration
+- Install @babel/preset-react - to make JSX work in test cases
+- Include @babel/preset-react inside my babel config
+- Install @testing-library/jest-dom

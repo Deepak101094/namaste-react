@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constant";
 
-const RestaurantCard = ({ resData: { info } }) => {
+const RestaurantCard = ({ resData }) => {
 	const {
 		id,
 		cloudinaryImageId,
@@ -10,10 +10,13 @@ const RestaurantCard = ({ resData: { info } }) => {
 		avgRating,
 		costForTwo,
 		sla: { deliveryTime },
-	} = info;
+	} = resData?.info;
 	return (
 		<>
-			<div className='m-4 p-4 w-[250px] bg-gray-100 hover:bg-gray-200 rounded-md'>
+			<div
+				data-testid='restaurant-card'
+				className='m-4 p-4 w-[250px] bg-gray-100 hover:bg-gray-200 rounded-md'
+			>
 				<img
 					className='w-[240px] h-[140px] rounded-md fit'
 					alt='food-logo'

@@ -5,7 +5,7 @@ import RestaurantCotegory from "./RestaurantCotegory";
 import Simmer from "./Simmer";
 
 const RestaurantMenu = () => {
-	const [showIndex, setShowIndex] = useState(0);
+	const [showIndex, setShowIndex] = useState(null);
 	const { resId } = useParams();
 	const resInfo = useRestaurantMenu(resId);
 

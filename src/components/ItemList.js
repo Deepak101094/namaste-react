@@ -20,6 +20,7 @@ const ItemList = ({ items }) => {
 					<div
 						key={id}
 						className='flex justify-between py-4 border-b border-gray-400'
+						data-testid='foodItems'
 					>
 						<div className='flex w-9/12 flex-col text-left items-start'>
 							<span className=' text-sm font-semibold'> {name} </span>

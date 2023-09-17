@@ -57,11 +57,12 @@ const Body = () => {
 	}
 
 	return (
-		<div className='body'>
-			<div className='flex mt-6 gap-6'>
+		<div className='body p-3'>
+			<div className='flex mx-6'>
 				<div className=''>
 					<input
 						type='text'
+						data-testid='searchInput'
 						className='border border-solid border-black px-4 py-2 rounded-lg'
 						onChange={(e) => setSearchText(e.target.value)}
 						value={searchText}
@@ -81,7 +82,7 @@ const Body = () => {
 						Top Reted Restaurant
 					</button>
 				</div>
-				<div className=' flex items-center'>
+				<div className=' flex items-center ml-4'>
 					<label>UserName:</label>
 					<input
 						className=' border border-black px-4 py-2 rounded-lg ml-2'
